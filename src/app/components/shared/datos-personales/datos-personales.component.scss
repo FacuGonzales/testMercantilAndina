@@ -1,6 +1,5 @@
 @import "../../../../assets/mixins/mixins";
-
-// azul: 3557F9
+@import "../../../../assets/variables/colors";
 
 .formularioContainer {
   margin: 50px auto;
@@ -16,7 +15,7 @@
 
       & label {
         margin-bottom: 15px;
-        color: #3557f9;
+        color: $colorAzulOscuro;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 15px;
       }
@@ -26,7 +25,7 @@
         outline: none;
         font-size: 15px;
         padding: 10px;
-        border: 1px solid #2aa7df;
+        border: 1px solid $colorCeleste;
         border-radius: 5px;
         width: 100%;
         display: block;
@@ -34,8 +33,8 @@
         margin-bottom: 10px; /*20px*/
 
         &:focus {
-          border-bottom: 2px solid #2aa7df;
-          background-color: #2aa6df42;
+          border-bottom: 2px solid $colorCeleste;
+          background-color: $colorAzulDegradado;
         }
       }
     }
@@ -54,14 +53,14 @@
 
 input.error_input,
 select.error_input {
-  background-color: #f73e3e5e !important;
-  border-bottom: 3px solid red !important;
-  border: 1px solid red !important;
+  background-color: $colorRojoDegradado !important;
+  border-bottom: 3px solid $colorRojo !important;
+  border: 1px solid $colorRojo !important;
 }
 
 .error {
   margin-bottom: 10px;
-  color: red;
+  color: $colorRojo;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   z-index: 10;
