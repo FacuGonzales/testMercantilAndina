@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatosPersonalesComponent } from './shared/datos-personales/datos-personales.component';
+import { MaterialCommonModule } from '../material-common.module';
 
 
 @NgModule({
@@ -9,6 +10,7 @@ import { DatosPersonalesComponent } from './shared/datos-personales/datos-person
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        MaterialCommonModule
     ],
     declarations: [
         
