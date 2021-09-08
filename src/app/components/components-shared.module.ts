@@ -15,6 +15,7 @@ import { DatosPersonalesComponent } from './shared/datos-personales/datos-person
         DatosPersonalesComponent
     ],
     exports: [
+        DatosPersonalesComponent
     ],
     providers: [],
 })
