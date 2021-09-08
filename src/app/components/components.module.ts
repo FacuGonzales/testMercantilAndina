@@ -4,6 +4,7 @@ import { ComponentsRoutingModule } from './components-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormularioPagesComponent } from './pages/formulario-pages.component';
 import { ComponentsSharedModule } from './components-shared.module';
+import { MaterialCommonModule } from '../material-common.module';
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import { ComponentsSharedModule } from './components-shared.module';
         FormsModule,
         ReactiveFormsModule,
         ComponentsRoutingModule,
-        ComponentsSharedModule
+        ComponentsSharedModule,
+        MaterialCommonModule
     ],
     declarations: [
         FormularioPagesComponent
