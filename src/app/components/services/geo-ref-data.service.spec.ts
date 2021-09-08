@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CiudadDataService } from './ciudad-data.service';
+import { GeoRefDataService } from './geo-ref-data.service';
 
-describe('CiudadDataService', () => {
-  let service: CiudadDataService;
+describe('GeoRefDataService', () => {
+  let service: GeoRefDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CiudadDataService);
+    service = TestBed.inject(GeoRefDataService);
   });
 
   it('should be created', () => {
