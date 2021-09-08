@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatosPersonalesComponent } from './shared/datos-personales/datos-personales.component';
 import { MaterialCommonModule } from '../material-common.module';
+import { LoadingComponent } from './shared/loading/loading.component';
+import { DatosVehiculoComponent } from './shared/datos-vehiculo/datos-vehiculo.component';
 
 
 @NgModule({
@@ -14,10 +16,16 @@ import { MaterialCommonModule } from '../material-common.module';
     ],
     declarations: [
         
-        DatosPersonalesComponent
+        DatosPersonalesComponent,
+        DatosVehiculoComponent,
+        
+        LoadingComponent,
+        
     ],
     exports: [
-        DatosPersonalesComponent
+        DatosPersonalesComponent,
+        DatosVehiculoComponent,
+        LoadingComponent
     ],
     providers: [],
 })
