@@ -1,201 +1,189 @@
 
-<form [formGroup]="datosPersonalesForm">
-
-    <div class="row">
-
-        <div class="col-sm-12 col-md-6 col-lg-6">    
-            <mat-form-field appearance="outline">
-                <mat-label>Apellido</mat-label>
-        
-                <input type="text" 
-                       matInput 
-                       formControlName="apellido" 
-                       placeholder="Apellido" 
-                       autocomplete="off" 
-                       [ngClass]="{'error_input':(f.apellido.hasError('required') && f.apellido.touched) || (f.apellido.invalid && f.apellido.touched)}">
-            </mat-form-field>
-
-            <p class="error" *ngIf="f.apellido.hasError('required') && f.apellido.touched">El campo Apellido es requerido</p>
-            <p class="error" *ngIf="f.apellido.hasError('minlength')">Debe tener minimo 2 caracteres</p>
-            <p class="error" *ngIf="f.apellido.hasError('maxlength')">Debe tener máximo 15 caracteres</p>
-        </div>
-        
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="outline">
-                <mat-label>Nombre</mat-label>
-        
-                <input type="text" 
-                       matInput 
-                       formControlName="nombre" 
-                       placeholder="Nombre" 
-                       autocomplete="off"
-                       [ngClass]="{'error_input':(f.nombre.hasError('required') && f.nombre.touched) || (f.nombre.invalid && f.nombre.touched)}">
-            </mat-form-field>
-
-            <p class="error" *ngIf="f.nombre.hasError('required') && f.nombre.touched">El campo Nombre es requerido</p>
-            <p class="error" *ngIf="f.nombre.hasError('minlength')">Debe tener minimo 2 caracteres</p>
-            <p class="error" *ngIf="f.nombre.hasError('maxlength')">Debe tener máximo 15 caracteres</p>
-        </div>
-        
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="outline">
-                <mat-label>DNI</mat-label>
-        
-                <input type="text" 
-                       matInput 
-                       formControlName="dni" 
-                       placeholder="Dni" 
-                       autocomplete="off" 
-                       (keypress)="soloNumeros($event, true)"
-                       [ngClass]="{'error_input':(f.dni.hasError('required') && f.dni.touched) || (f.dni.invalid && f.dni.touched)}">
-            </mat-form-field>
-
-            <p class="error" *ngIf="f.dni.hasError('required') && f.dni.touched">El campo Dni es requerido</p>
-            <p class="error" *ngIf="f.dni.hasError('minlength')">Debe tener minimo 7 caracteres</p>
-            <p class="error" *ngIf="f.dni.hasError('maxlength')">Debe tener máximo 8 caracteres</p>
-        </div>
+<form [formGroup]="datosPersonalesForm" *ngIf="!loading" class="formularioContainer">
     
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
+    <div class="formularioContainer__containerGrupoInputs">  <!--apellidoNombreContainer-->
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Apellido</label>
         
-                <input type="email" 
-                       matInput 
-                       formControlName="email" 
-                       placeholder="Email" 
-                       autocomplete="off"
-                       [ngClass]="{'error_input':(f.email.hasError('required') && f.email.touched) || (f.email.invalid && f.email.touched)}">
-            </mat-form-field>
-
-            <p class="error" *ngIf="f.email.hasError('required') && f.email.touched">El email es requerido</p>
-            <p class="error" *ngIf="f.email.hasError('email')">El email no tiene un formato válido.</p> 
+            <input type="text" 
+                   matInput 
+                   formControlName="apellido" 
+                   placeholder="Apellido" 
+                   autocomplete="off" 
+                   [ngClass]="{'error_input':(formControl.apellido.hasError('required') && formControl.apellido.touched) || (formControl.apellido.invalid && formControl.apellido.touched)}">
+        
+            <p class="error" *ngIf="formControl.apellido.hasError('required') && formControl.apellido.touched">El campo Apellido es requerido</p>
+            <p class="error" *ngIf="formControl.apellido.hasError('minlength')">Debe tener minimo 2 caracteres</p>
+            <p class="error" *ngIf="formControl.apellido.hasError('maxlength')">Debe tener máximo 15 caracteres</p>
+        </div>  
+        
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Nombre</label>
+        
+            <input type="text" 
+                   matInput 
+                   formControlName="nombre" 
+                   placeholder="Nombre" 
+                   autocomplete="off"
+                   [ngClass]="{'error_input':(formControl.nombre.hasError('required') && formControl.nombre.touched) || (formControl.nombre.invalid && formControl.nombre.touched)}">
+            
+            <p class="error" *ngIf="formControl.nombre.hasError('required') && formControl.nombre.touched">El campo Nombre es requerido</p>
+            <p class="error" *ngIf="formControl.nombre.hasError('minlength')">Debe tener minimo 2 caracteres</p>
+            <p class="error" *ngIf="formControl.nombre.hasError('maxlength')">Debe tener máximo 15 caracteres</p>
         </div>
-    
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="outline">
-                <mat-label>Celular</mat-label>
-        
-                <input type="text" 
-                       matInput 
-                       formControlName="celular" 
-                       placeholder="Celular" 
-                       autocomplete="off"
-                       [ngClass]="{'error_input': f.celular.invalid && f.celular.touched}">
-            </mat-form-field>
+    </div>
 
-            <p class="error" *ngIf="f.celular.hasError('minlength')">Debe tener 10 caracteres</p>
-            <p class="error" *ngIf="f.celular.hasError('maxlength')">Debe tener 10 caracteres</p>
+    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__dniEmailContainer-->
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>DNI</label>
+        
+            <input type="text" 
+                   matInput 
+                   formControlName="dni" 
+                   placeholder="Dni" 
+                   autocomplete="off" 
+                   (keypress)="soloNumeros($event, true)"
+                   [ngClass]="{'error_input':(formControl.dni.hasError('required') && formControl.dni.touched) || (formControl.dni.invalid && formControl.dni.touched)}">
+        
+            <p class="error" *ngIf="formControl.dni.hasError('required') && formControl.dni.touched">El campo Dni es requerido</p>
+            <p class="error" *ngIf="formControl.dni.hasError('minlength')">Debe tener minimo 7 caracteres</p>
+            <p class="error" *ngIf="formControl.dni.hasError('maxlength')">Debe tener máximo 8 caracteres</p>
+        </div>
+
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Email</label>
+        
+            <input type="email" 
+                   matInput 
+                   formControlName="email" 
+                   placeholder="Email" 
+                   autocomplete="off"
+                   [ngClass]="{'error_input':(formControl.email.hasError('required') && formControl.email.touched) || (formControl.email.invalid && formControl.email.touched)}">
+            
+            <p class="error" *ngIf="formControl.email.hasError('required') && formControl.email.touched">El email es requerido</p>
+            <p class="error" *ngIf="formControl.email.hasError('email')">El email no tiene un formato válido.</p> 
+        </div>
+    </div>
+
+    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__celularTelefonoContainer-->
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Celular</label>
+        
+            <input type="text" 
+                   matInput 
+                   formControlName="celular" 
+                   placeholder="Celular" 
+                   autocomplete="off"
+                   (keypress)="soloNumeros($event, true)"
+                   [ngClass]="{'error_input': formControl.celular.invalid && formControl.celular.touched}">
+
+            <p class="error" *ngIf="formControl.celular.hasError('minlength')">Debe tener 10 caracteres</p>
+            <p class="error" *ngIf="formControl.celular.hasError('maxlength')">Debe tener 10 caracteres</p>
         </div>
     
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="outline">
-                <mat-label>Teléfono</mat-label>
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Teléfono</label>
         
-                <input type="text" 
-                       matInput 
-                       formControlName="telefono" 
-                       placeholder="Telefono" 
-                       autocomplete="off"
-                       [ngClass]="{'error_input': f.telefono.invalid && f.telefono.touched}">
-            </mat-form-field>
-
-            <p class="error" *ngIf="f.telefono.hasError('minlength')">Debe tener 10 caracteres</p>
-            <p class="error" *ngIf="f.telefono.hasError('maxlength')">Debe tener 10 caracteres</p>
+            <input type="text" 
+                   matInput 
+                   formControlName="telefono" 
+                   placeholder="Telefono" 
+                   autocomplete="off"
+                   (keypress)="soloNumeros($event, true)"
+                   [ngClass]="{'error_input': formControl.telefono.invalid && formControl.telefono.touched}">
+            
+            <p class="error" *ngIf="formControl.telefono.hasError('minlength')">Debe tener 10 caracteres</p>
+            <p class="error" *ngIf="formControl.telefono.hasError('maxlength')">Debe tener 10 caracteres</p>
         </div>
-    
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="outline">
-                <mat-label>Domicilio</mat-label>
+    </div>
+
+    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__domicilioProvCiudadContainer-->
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Domicilio</label>
         
-                <input type="text" 
-                       matInput 
-                       formControlName="domicilio" 
-                       placeholder="Domicilio" 
-                       autocomplete="off"
-                       [ngClass]="{'error_input': f.domicilio.invalid && f.domicilio.touched}">
-            </mat-form-field>
+            <input type="text" 
+                   matInput 
+                   formControlName="domicilio" 
+                   placeholder="Domicilio" 
+                   autocomplete="off"
+                   [ngClass]="{'error_input': formControl.domicilio.invalid && formControl.domicilio.touched}">
+            
+            <p class="error" *ngIf="formControl.domicilio.hasError('required') && formControl.domicilio.touched">El domicilio es requerido</p>
+        </div>
+    
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Provincia</label>
 
-            <p class="error" *ngIf="f.domicilio.hasError('required') && f.domicilio.touched">El domicilio es requerido</p>
-        </div>
-    
-        <div class="col-sm-12 col-md-3 col-lg-3">
-            <mat-form-field appearance="outline">
-                <mat-label>Ciudad</mat-label>
-                <mat-select formControlName="ciudad" [ngClass]="{'error_input': f.ciudad.invalid && f.ciudad.touched}">
-                    <mat-option value="option1">Option 1</mat-option>
-                    <mat-option value="option1">Option 1</mat-option>
-                    <mat-option value="option1">Option 1</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <select formControlName="provincia" [ngClass]="{'error_input': formControl.provincia.invalid && formControl.provincia.touched}">
+                <option value="{{provincia.id}}" *ngFor="let provincia of listadoProvincias">{{provincia.nombre}}</option>
+            </select>
 
-            <p class="error" *ngIf="f.ciudad.hasError('required') && f.ciudad.touched">La ciudad es requerida</p>
+            <p class="error" *ngIf="formControl.provincia.hasError('required') && formControl.provincia.touched">La provincia es requerida</p>
         </div>
-    
-        <div class="col-sm-12 col-md-3 col-lg-3">
-            <mat-form-field appearance="outline">
-                <mat-label>Provincia</mat-label>
-                <mat-select formControlName="provincia" [ngClass]="{'error_input': f.provincia.invalid && f.provincia.touched}">
-                    <mat-option value="option1">Option 1</mat-option>
-                    <mat-option value="option1">Option 1</mat-option>
-                    <mat-option value="option1">Option 1</mat-option>
-                </mat-select>
-            </mat-form-field>
 
-            <p class="error" *ngIf="f.provincia.hasError('required') && f.provincia.touched">La provincia es requerida</p>
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Ciudad</label>
+            <select formControlName="ciudad" [ngClass]="{'error_input': formControl.ciudad.invalid && formControl.ciudad.touched}">
+                <option value="{{ciudad.id}}" *ngFor="let ciudad of listadoCiudades">{{ciudad.nombre}}</option>
+            </select>
+
+            <p class="error" *ngIf="formControl.ciudad.hasError('required') && formControl.ciudad.touched">La ciudad es requerida</p>
+        </div>
+    </div>
+
+    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__fechaNacimientoUsuarioPassContainer-->
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Fecha de Nacimiento</label>
+    
+            <input matInput 
+                   type="date"
+                   placeholder="Fecha de Nacimiento"
+                   formControlName="fechaNacimiento"
+                   
+                   [ngClass]="{'error_input':(formControl.fechaNacimiento.hasError('required') && formControl.fechaNacimiento.touched) || (formControl.fechaNacimiento.invalid && formControl.fechaNacimiento.touched)}">
+    
+           
+            <p class="error" *ngIf="formControl.fechaNacimiento.hasError('required') && formControl.fechaNacimiento.touched">El campo Fecha Nacimiento es requerido</p>
         </div>
     
-        <div class="col-sm-12 col-md-2 col-lg-2">
-            <mat-form-field appearance="outline">
-                <mat-label>Fecha de Nacimiento</mat-label>
-    
-                <input matInput 
-                       [matDatepicker]="fechaNacimientoDate" 
-                       [disabled]="true" 
-                       (click)="fechaNacimientoDate.open()"
-                       placeholder="Fecha de Nacimiento"
-                       formControlName="fechaNacimiento"
-                       readonly>
-    
-                <mat-datepicker-toggle matSuffix [for]="fechaNacimientoDate"></mat-datepicker-toggle>
-                <mat-datepicker #fechaNacimientoDate disabled=false></mat-datepicker>
-            </mat-form-field>
-        </div>
-    
-        <div class="col-sm-12 col-md-5 col-lg-5">
-            <mat-form-field appearance="outline">
-                <mat-label>Usuario</mat-label>
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Usuario</label>
         
-                <input type="text" 
-                       matInput 
-                       formControlName="usuario" 
-                       placeholder="Usuario" 
-                       autocomplete="off" 
-                       [ngClass]="{'error_input':(f.nombre.hasError('required') && f.usuario.touched) || (f.usuario.invalid && f.usuario.touched)}">
-            </mat-form-field>
-
-            <p class="error" *ngIf="f.usuario.hasError('required') && f.usuario.touched">El campo Usuario es requerido</p>
-            <p class="error" *ngIf="f.usuario.hasError('minlength')">Debe tener minimo 3 caracteres</p>
-            <p class="error" *ngIf="f.usuario.hasError('maxlength')">Debe tener máximo 30 caracteres</p>
+            <input type="text" 
+                   matInput 
+                   formControlName="usuario" 
+                   placeholder="Usuario" 
+                   autocomplete="off" 
+                   [ngClass]="{'error_input':(formControl.usuario.hasError('required') && formControl.usuario.touched) || (formControl.usuario.invalid && formControl.usuario.touched)}">
+            
+            <p class="error" *ngIf="formControl.usuario.hasError('required') && formControl.usuario.touched">El campo Usuario es requerido</p>
+            <p class="error" *ngIf="formControl.usuario.hasError('minlength')">Debe tener minimo 3 caracteres</p>
+            <p class="error" *ngIf="formControl.usuario.hasError('maxlength')">Debe tener máximo 30 caracteres</p>
         </div>
     
-        <div class="col-sm-12 col-md-5 col-lg-5">
-            <mat-form-field appearance="outline">
-                <mat-label>Contraseña</mat-label>
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Contraseña</label>
         
-                <input type="password" 
-                       matInput 
-                       placeholder="Contraseña" 
-                       autocomplete="off"
-                       [ngClass]="{'error_input':(f.password.hasError('required') && f.password.touched) || (f.password.invalid && f.password.touched)}"
-                       (ngModelChange)="validarPassword($event)"
-                       formControlName="password">
-            </mat-form-field>
+            <input type="password" 
+                   matInput 
+                   placeholder="Contraseña" 
+                   formControlName="password"
+                   autocomplete="off"
+                   [ngClass]="{'error_input':(formControl.password.hasError('required') && formControl.password.touched) || (formControl.password.invalid && formControl.password.touched)}"
+                   (ngModelChange)="validarPassword($event)"
+                   >
 
-            <p class="error" *ngIf="f.password.hasError('required') && f.password.touched">La contrseña es requerido</p>
-            <p class="error" *ngIf="regPassValid == false && passwordValid == false && minLenghtPass == false && f.password.hasError('required') == false">
-                La contraseña no es válida (Debe ser minimo 6 caracteres, alfanumerica).
+            <p class="error" *ngIf="formControl.password.hasError('required') && formControl.password.touched">La contrseña es requerido</p>
+            <p class="error" *ngIf="regPassValid == false && passwordValid == false && minLenghtPass == false && formControl.password.hasError('required') == false">
+                La contraseña no es válida (Debe ser minimo 8 caracteres, alfanumerica).
             </p>
         </div>
-        
     </div>
+        
+    <div class="formularioContainer__botonContainer">
+        <button mat-raised-button color="primary" (click)="guardar()">Enviar datos</button>
+    </div>
+        
 </form>
+
+<loading-component *ngIf="loading"></loading-component>
