@@ -1,4 +1,112 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+}
+
+@import "./assets/mixins/mixins";
+@import "./assets/variables/colors";
+
+.formularioContainer {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 50px auto;
+  max-width: 1000px;
+  width: 80%; /*50%;*/
+
+  &__containerGrupoInputs {
+    @include display-flex-content(flex, center, center, "");
+
+    &--containerInput {
+      margin: 0px 10px;
+      width: 100%;
+
+      & label {
+        color: $colorAzulOscuro;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        margin-bottom: 15px;
+      }
+
+      & input,
+      select {
+        border: 1px solid $colorCeleste;
+        border-radius: 5px;
+        display: block;
+        font-size: 15px;
+        margin-bottom: 10px; /*20px*/
+        outline: none;
+        padding: 10px;
+        transition: all 0.3s;
+        width: 100%;
+
+        &:focus {
+          background-color: $colorAzulDegradado;
+          border-bottom: 2px solid $colorCeleste;
+        }
+      }
+    }
+  }
+
+  &__botonContainer {
+    margin: 15px auto;
+    @include display-flex-content(flex, center, center, "");
+
+    & button {
+      font-size: 1.2rem;
+      padding: 10px 60px;
+    }
+  }
+}
+
+input.error_input,
+select.error_input {
+  background-color: $colorRojoDegradado !important;
+  border: 1px solid $colorRojo !important;
+  border-bottom: 3px solid $colorRojo !important;
+}
+
+.error {
+  color: $colorRojo;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin-bottom: 10px;
+  z-index: 10;
+}
+
+@media only screen and (max-width: 1200px) {
+  .formularioContainer {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .formularioContainer {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .formularioContainer {
+    width: 80%;
+
+    &__containerGrupoInputs {
+      &--containerInput {
+        & label {
+          font-size: 11.66px;
+        }
+
+        & input {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .error {
+    font-size: 9.66px;
+  }
+}
