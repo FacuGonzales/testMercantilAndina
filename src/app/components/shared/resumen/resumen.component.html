@@ -1,0 +1,53 @@
+
+<div class="resumenContainer">
+    <h2 class="resumenContainer--h2">Confirmacion de Registro</h2>
+
+    <div class="resumenContainer--infoContainer">
+        <div class="resumenContainer--infoContainer__datosPrincipales">
+            <mat-card class="resumenContainer--infoContainer__datosPrincipales--datosPersonales">
+                <h4>Datos Personales</h4>
+    
+                <p>Nombre y Apellido: <strong>{{datosPersonales?.nombre}}, {{datosPersonales?.apellido}}</strong></p>
+                <p>Nombre de usuario: <strong>{{datosPersonales?.usuario}}</strong></p>
+                <p>Fecha de Nacimiento: <strong>{{datosPersonales?.fechaNacimiento | date: 'dd/MM/yyyy'}}</strong></p>
+                <p>Dni: <strong>{{datosPersonales?.dni}}</strong></p>
+                <p>Celular: <strong>{{datosPersonales?.celular || '-- SIN CELULAR CARGADO --'}}</strong></p>
+                <p>Telefono: <strong>{{datosPersonales?.telefono || '-- SIN TELEFONO CARGADO --'}}</strong></p>
+                <p>Email: <strong>{{datosPersonales?.email}}</strong></p>
+                <p>Domicilio: <strong>{{datosPersonales?.email}}</strong></p>
+                <p>Ciudad: <strong>{{datosPersonales?.Ciudad.nombre}}</strong></p>
+                <p>Pronvincia: <strong>{{datosPersonales?.provincia.nombre}}</strong></p>
+            </mat-card>
+    
+            <mat-card class="resumenContainer--infoContainer__datosPrincipales--datosVehiculo">
+                <h4>Datos del Vehiculo</h4>
+    
+                <p>Marca: <strong>{{datosVehiculo?.marca.desc}}</strong></p>
+                <p>Modelo: <strong>{{datosVehiculo?.modelo}}</strong></p>
+                <p>Version: <strong>{{datosVehiculo?.version.desc}}</strong></p>
+                <p>Año: <strong>{{datosVehiculo?.anio}}</strong></p>
+            </mat-card>
+        </div>
+
+        <div class="resumenContainer--infoContainer__datosCobertura">
+            <h4>Datos de la Cobertura</h4>
+            
+            <p>Número de Cobertura: <strong>{{datosCobertura?.numero}}</strong></p>
+            <p>Nombre de Cobertura: <strong>{{datosCobertura?.titulo}}</strong></p>
+            <p>Descripcion: <strong>{{datosCobertura?.descripcion}}</strong></p>
+            <p>Cobertura contra granizo: <strong *ngIf="datosCobertura?.granizo">SI</strong><strong *ngIf="!datosCobertura?.granizo">NO</strong></p>
+            <p>Franquicia: <strong>{{datosCobertura?.franquicia}}</strong></p>
+            <p>Costo: <strong>$ {{datosCobertura?.costo}}</strong></p>
+        </div>
+    </div>
+</div>
+
+<div class="formularioContainer__botonContainer">
+    <div class="formularioContainer__botonContainer--siguienteContainer">
+        <button mat-fab color="warn" matTooltip="Regresar pestaña anterior" matStepperPrevious>
+            <mat-icon>west</mat-icon>
+        </button>
+    </div>
+
+    <button class="formularioContainer__botonContainer--buttonEnviar" mat-raised-button color="primary" (click)="guardar()">CONFIRMAR</button>
+</div>
