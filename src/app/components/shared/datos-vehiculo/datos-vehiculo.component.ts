@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { IDatosVehiculoModel } from '../../models/datos-vehiculo-model';
 import { IMarcaModel } from '../../models/marca-model';
 import { VehiculoDataService } from '../../services/vehiculo-data.service';
 import { alphaOrder } from '../utils/util'
@@ -123,8 +124,15 @@ export class DatosVehiculoComponent implements OnInit {
 
   guardar(){
     if(this.datosVehiculoForm.valid){
-      localStorage.setItem('datos-vehiculo', JSON.stringify(this.datosVehiculoForm.value));
-      this.datosVehiculoLoad.emit(this.datosVehiculoForm.value);
+
+      let datosVehiculo: IDatosVehiculoModel = {
+        marca: this.listadoMarca.find( m => m.codigo == this.datosVehiculoForm.get('marca').value),
+        anio: this.datosVehiculoForm.get('anio').value,
+        modelo: this.datosVehiculoForm.get('modelo').value,
+        version: this.listadoVersiones.find( v => v.codigo == this.datosVehiculoForm.get('version').value)
+      }
+      
+      this.datosVehiculoLoad.emit(datosVehiculo);
       
       this.alert.success('Se cargó correctamente los datos del vehiculo.');
       this.disabledEnviar = true;
