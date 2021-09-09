@@ -1,1 +1,49 @@
-<p>formulario-pages works!</p>
+
+<div class="col-sm-12 col-md- 12 col-lg-12">
+    <header-component></header-component>
+</div>
+
+<div class="col-sm-12 col-md-10 col-lg-10 containerForm">
+    <mat-card>
+        <mat-horizontal-stepper linear #stepper>
+
+            <!-- DATOS PERSONALES -->
+            <mat-step [stepControl]="datosPersonalesForm">
+
+                <ng-template matStepLabel>Datos Personales</ng-template>
+            
+                <datos-personales-component (datosPersonalesLoad)="loadDatosPersonales($event)"></datos-personales-component>
+                
+            </mat-step>
+
+            <!-- DATOS DEL VEHICULO -->
+            <mat-step [stepControl]="datosVehiculoForm">
+                
+                <ng-template matStepLabel>Datos del Vehiculo</ng-template>
+                
+                <datos-vehiculo-component (datosVehiculoLoad)="loadDatosVehiculo($event)"></datos-vehiculo-component>
+
+            </mat-step>
+
+            <!-- DATOS DE LAS COBERTURAS -->
+            <mat-step [stepControl]="datosCoberturaForm">
+                <ng-template matStepLabel>Coberturas Disponibles</ng-template>
+
+                <coberturas-component (enviarCoberturaSelected)="coberturaSelected($event)"></coberturas-component>
+
+            </mat-step>
+
+            <!-- DATOS DEL RESUMEN -->
+            <mat-step state="download_done">
+                <ng-template matStepLabel>RESUMEN</ng-template>
+
+                <resumen-component [registroFinalizado]="registroFinalizado"></resumen-component>
+                
+            </mat-step>
+        </mat-horizontal-stepper>
+    </mat-card>
+</div>
+
+<div class="col-sm-12 col-md- 12 col-lg-12">
+    <footer-container></footer-container>
+</div>
