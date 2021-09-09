@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatosPersonalesComponent } from './shared/datos-personales/datos-personales.component';
 import { MaterialCommonModule } from '../material-common.module';
-import { LoadingComponent } from './shared/loading/loading.component';
 import { DatosVehiculoComponent } from './shared/datos-vehiculo/datos-vehiculo.component';
 import { CoberturasComponent } from './shared/coberturas/coberturas.component';
+import { ResumenComponent } from './shared/resumen/resumen.component';
 
 
 @NgModule({
@@ -18,14 +18,14 @@ import { CoberturasComponent } from './shared/coberturas/coberturas.component';
     declarations: [
         DatosPersonalesComponent,
         DatosVehiculoComponent,
-        LoadingComponent,
         CoberturasComponent,
+        ResumenComponent,
     ],
     exports: [
         DatosPersonalesComponent,
         DatosVehiculoComponent,
-        LoadingComponent,
-        CoberturasComponent
+        CoberturasComponent,
+        ResumenComponent
     ],
     providers: [],
 })
