@@ -1,7 +1,7 @@
 
 <form [formGroup]="datosVehiculoForm" *ngIf="!loading" class="formularioContainer">
     
-    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__domicilioProvCiudadContainer-->
+    <div class="formularioContainer__containerGrupoInputs">
         
     
         <div class="formularioContainer__containerGrupoInputs--containerInput">
@@ -54,7 +54,19 @@
     </div>
         
     <div class="formularioContainer__botonContainer">
-        <button mat-raised-button color="primary" (click)="guardar()">Enviar datos</button>
+        <div class="formularioContainer__botonContainer--siguienteContainer">
+            <button mat-fab color="warn" matTooltip="Regresar pestaña anterior" matStepperPrevious>
+                <mat-icon>west</mat-icon>
+            </button>
+        </div>
+
+        <button class="formularioContainer__botonContainer--buttonEnviar" mat-raised-button color="{{colorEnviar}}" (click)="guardar()" [disabled]="disabledEnviar">Enviar datos</button>
+
+        <div class="formularioContainer__botonContainer--siguienteContainer" *ngIf="registroOk">
+            <button mat-fab color="warn" matTooltip="Continuar Registro" matStepperNext>
+                <mat-icon>arrow_right_alt</mat-icon>
+            </button>
+        </div>
     </div>
         
 </form>

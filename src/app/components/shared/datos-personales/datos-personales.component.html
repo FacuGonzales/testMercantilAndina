@@ -1,7 +1,8 @@
 
+
 <form [formGroup]="datosPersonalesForm" *ngIf="!loading" class="formularioContainer">
-    
-    <div class="formularioContainer__containerGrupoInputs">  <!--apellidoNombreContainer-->
+
+    <div class="formularioContainer__containerGrupoInputs">
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>Apellido</label>
         
@@ -33,7 +34,7 @@
         </div>
     </div>
 
-    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__dniEmailContainer-->
+    <div class="formularioContainer__containerGrupoInputs">
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>DNI</label>
         
@@ -65,7 +66,7 @@
         </div>
     </div>
 
-    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__celularTelefonoContainer-->
+    <div class="formularioContainer__containerGrupoInputs">
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>Celular</label>
         
@@ -97,7 +98,7 @@
         </div>
     </div>
 
-    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__domicilioProvCiudadContainer-->
+    <div class="formularioContainer__containerGrupoInputs">
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>Domicilio</label>
         
@@ -135,7 +136,7 @@
         </div>
     </div>
 
-    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__fechaNacimientoUsuarioPassContainer-->
+    <div class="formularioContainer__containerGrupoInputs">
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>Fecha de Nacimiento</label>
     
@@ -185,9 +186,13 @@
     </div>
         
     <div class="formularioContainer__botonContainer">
-        <button mat-raised-button color="primary" (click)="guardar()">Enviar datos</button>
+        <button class="formularioContainer__botonContainer--buttonEnviar" mat-raised-button color="{{colorEnviar}}" (click)="guardar()" [disabled]="disabledEnviar">Enviar datos</button>
+
+        <div class="formularioContainer__botonContainer--siguienteContainer" *ngIf="registroOk">
+            <button mat-fab color="warn" matTooltip="Continuar Registro" matStepperNext>
+                <mat-icon>arrow_right_alt</mat-icon>
+            </button>
+        </div>
     </div>
         
 </form>
-
-<loading-component *ngIf="loading"></loading-component>
