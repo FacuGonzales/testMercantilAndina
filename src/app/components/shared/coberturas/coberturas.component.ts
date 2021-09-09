@@ -20,7 +20,7 @@ export class CoberturasComponent implements OnInit {
   disabledEnviar: boolean = true;
   colorEnviar: string = '';
 
-  displayedColumns: string[] = ['titulo', 'puntaje', 'descripcion', 'costo', 'granizo'];
+  displayedColumns: string[] = ['titulo', 'puntaje', 'descripcion', 'franquicia','costo', 'granizo'];
   dataSource: MatTableDataSource<any>;
   selectedElement: ICoberturaModel;
 
