@@ -1,38 +1,46 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { CdkTableModule } from '@angular/cdk/table';
+
+
+
 
 
 @NgModule({
     imports: [
         CommonModule,
-        MatInputModule,
-        MatSelectModule,
-        MatDatepickerModule,
+        MatTooltipModule,
         MatCardModule,
         MatStepperModule,
-        MatNativeDateModule,
         MatButtonModule,
         MatProgressBarModule,
+        MatIconModule,
+        MatTableModule,
+        MatPaginatorModule,
+        CdkTableModule,
+
     ],
     declarations: [
     ],
     exports: [
-        MatInputModule,
-        MatSelectModule,
-        MatDatepickerModule,
         MatCardModule,
         MatStepperModule,
-        MatNativeDateModule,
         MatButtonModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatTooltipModule,
+        MatIconModule,
+        MatTableModule,
+        MatPaginatorModule,
+        CdkTableModule
     ],
     providers: [  
         MatDatepickerModule,  
