@@ -7,7 +7,7 @@
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>Marca</label>
 
-            <select formControlName="marca" [ngClass]="{'error_input': formControl.marca.invalid && formControl.marca.touched}">
+            <select formControlName="marca" [ngClass]="{'error_input': formControl.marca.invalid && formControl.marca.touched}" id="marcaId">
                 <option value="">-- SELECCIONAR --</option>
 
                 <option value="{{m.codigo}}" *ngFor="let m of listadoMarca">{{m.desc}}</option>
@@ -24,6 +24,7 @@
                    placeholder="Año"
                    formControlName="anio"
                    min="{{anioMinimo}}" max="{{anioActual}}"
+                   id="anioId"
                    [ngClass]="{'error_input':(formControl.anio.hasError('required') && formControl.anio.touched) || (formControl.anio.invalid && formControl.anio.touched)}">
     
            
@@ -32,7 +33,7 @@
 
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>Modelo</label>
-            <select formControlName="modelo" [ngClass]="{'error_input': formControl.modelo.invalid && formControl.modelo.touched}">
+            <select formControlName="modelo" [ngClass]="{'error_input': formControl.modelo.invalid && formControl.modelo.touched}" id="modeloId">
                 <option value="">-- SELECCIONAR --</option>
 
                 <option value="{{model}}" *ngFor="let model of listadoModelo">{{model}}</option>
@@ -43,7 +44,7 @@
 
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>Version</label>
-            <select formControlName="version" [ngClass]="{'error_input': formControl.version.invalid && formControl.version.touched}">
+            <select formControlName="version" [ngClass]="{'error_input': formControl.version.invalid && formControl.version.touched}" id="versionId">
                 <option value="">-- SELECCIONAR --</option>
 
                 <option value="{{ver.codigo}}" *ngFor="let ver of listadoVersiones">{{ver.desc}}</option>
@@ -55,15 +56,15 @@
         
     <div class="formularioContainer__botonContainer">
         <div class="formularioContainer__botonContainer--siguienteContainer">
-            <button mat-fab color="warn" matTooltip="Regresar pestaña anterior" matStepperPrevious>
+            <button mat-fab color="warn" matTooltip="Regresar pestaña anterior" id="buttonAtras" matStepperPrevious>
                 <mat-icon>west</mat-icon>
             </button>
         </div>
 
-        <button class="formularioContainer__botonContainer--buttonEnviar" mat-raised-button color="{{colorEnviar}}" (click)="guardar()" [disabled]="disabledEnviar">Enviar datos</button>
+        <button class="formularioContainer__botonContainer--buttonEnviar" id="buttonEnviarDatos" mat-raised-button color="{{colorEnviar}}" (click)="guardar()" [disabled]="disabledEnviar">Enviar datos</button>
 
         <div class="formularioContainer__botonContainer--siguienteContainer" *ngIf="registroOk">
-            <button mat-fab color="warn" matTooltip="Continuar Registro" matStepperNext>
+            <button mat-fab color="warn" matTooltip="Continuar Registro" id="buttonSiguiente" matStepperNext>
                 <mat-icon>arrow_right_alt</mat-icon>
             </button>
         </div>
