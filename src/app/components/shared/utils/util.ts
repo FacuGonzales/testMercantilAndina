@@ -9,3 +9,8 @@ export const alphaOrder = (a,b, decrec?:boolean) => {
   if(a > b) return 1;
   return 0;
 }
+
+
+export const setStorage = (nombreStorgae, datos) => {
+  localStorage.setItem(nombreStorgae, JSON.stringify(datos));
+}
