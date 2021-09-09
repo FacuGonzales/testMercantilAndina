@@ -115,6 +115,8 @@
             <label>Provincia</label>
 
             <select formControlName="provincia" [ngClass]="{'error_input': formControl.provincia.invalid && formControl.provincia.touched}">
+                <option value="">-- SELECCIONAR --</option>
+                
                 <option value="{{provincia.id}}" *ngFor="let provincia of listadoProvincias">{{provincia.nombre}}</option>
             </select>
 
@@ -124,6 +126,8 @@
         <div class="formularioContainer__containerGrupoInputs--containerInput">
             <label>Ciudad</label>
             <select formControlName="ciudad" [ngClass]="{'error_input': formControl.ciudad.invalid && formControl.ciudad.touched}">
+                <option value="">-- SELECCIONAR --</option>
+
                 <option value="{{ciudad.id}}" *ngFor="let ciudad of listadoCiudades">{{ciudad.nombre}}</option>
             </select>
 
