@@ -56,6 +56,13 @@ export class DatosVehiculoComponent implements OnInit {
   }
 
   formSubscribe(){
+    this.datosVehiculoForm.valueChanges.subscribe( p => {
+      this.disabledEnviar = false; 
+      this.colorEnviar = 'primary';
+      this.registroOk = false;
+    });
+
+    
     this.datosVehiculoForm.get('marca').valueChanges.subscribe( m => this.getModelos());
     this.datosVehiculoForm.get('anio').valueChanges.subscribe(
       a => {
@@ -119,7 +126,7 @@ export class DatosVehiculoComponent implements OnInit {
       localStorage.setItem('datos-vehiculo', JSON.stringify(this.datosVehiculoForm.value));
       this.datosVehiculoLoad.emit(this.datosVehiculoForm.value);
       
-      this.alert.success('Se creo correctamente ');
+      this.alert.success('Se cargó correctamente los datos del vehiculo.');
       this.disabledEnviar = true;
       this.colorEnviar = '';
       this.registroOk = true;
