@@ -6,6 +6,8 @@ import { MaterialCommonModule } from '../material-common.module';
 import { DatosVehiculoComponent } from './shared/datos-vehiculo/datos-vehiculo.component';
 import { CoberturasComponent } from './shared/coberturas/coberturas.component';
 import { ResumenComponent } from './shared/resumen/resumen.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 @NgModule({
@@ -20,12 +22,16 @@ import { ResumenComponent } from './shared/resumen/resumen.component';
         DatosVehiculoComponent,
         CoberturasComponent,
         ResumenComponent,
+        HeaderComponent,
+        FooterComponent,
     ],
     exports: [
         DatosPersonalesComponent,
         DatosVehiculoComponent,
         CoberturasComponent,
-        ResumenComponent
+        ResumenComponent,
+        HeaderComponent,
+        FooterComponent,
     ],
     providers: [],
 })
