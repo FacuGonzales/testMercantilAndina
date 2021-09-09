@@ -1,1 +1,62 @@
-<p>datos-vehiculo works!</p>
+
+<form [formGroup]="datosVehiculoForm" *ngIf="!loading" class="formularioContainer">
+    
+    <div class="formularioContainer__containerGrupoInputs"> <!--formularioContainer__domicilioProvCiudadContainer-->
+        
+    
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Marca</label>
+
+            <select formControlName="marca" [ngClass]="{'error_input': formControl.marca.invalid && formControl.marca.touched}">
+                <option value="">-- SELECCIONAR --</option>
+
+                <option value="{{m.codigo}}" *ngFor="let m of listadoMarca">{{m.desc}}</option>
+            </select>
+
+            <p class="error" *ngIf="formControl.marca.hasError('required') && formControl.marca.touched">La marca es requerida</p>
+        </div>
+
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Año</label>
+    
+            <input matInput 
+                   type="number"
+                   placeholder="Año"
+                   formControlName="anio"
+                   min="{{anioMinimo}}" max="{{anioActual}}"
+                   [ngClass]="{'error_input':(formControl.anio.hasError('required') && formControl.anio.touched) || (formControl.anio.invalid && formControl.anio.touched)}">
+    
+           
+            <p class="error" *ngIf="formControl.anio.hasError('required') && formControl.anio.touched">El campo Año es requerido</p>
+        </div>
+
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Modelo</label>
+            <select formControlName="modelo" [ngClass]="{'error_input': formControl.modelo.invalid && formControl.modelo.touched}">
+                <option value="">-- SELECCIONAR --</option>
+
+                <option value="{{model}}" *ngFor="let model of listadoModelo">{{model}}</option>
+            </select>
+
+            <p class="error" *ngIf="formControl.modelo.hasError('required') && formControl.modelo.touched">El modelo es requerido</p>
+        </div>
+
+        <div class="formularioContainer__containerGrupoInputs--containerInput">
+            <label>Version</label>
+            <select formControlName="version" [ngClass]="{'error_input': formControl.version.invalid && formControl.version.touched}">
+                <option value="">-- SELECCIONAR --</option>
+
+                <option value="{{ver.codigo}}" *ngFor="let ver of listadoVersiones">{{ver.desc}}</option>
+            </select>
+
+            <p class="error" *ngIf="formControl.version.hasError('required') && formControl.version.touched">La version es requerida</p>
+        </div>
+    </div>
+        
+    <div class="formularioContainer__botonContainer">
+        <button mat-raised-button color="primary" (click)="guardar()">Enviar datos</button>
+    </div>
+        
+</form>
+
+<loading-component *ngIf="loading"></loading-component>
