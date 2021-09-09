@@ -3,8 +3,8 @@
     <h2 class="resumenContainer--h2">Confirmacion de Registro</h2>
 
     <div class="resumenContainer--infoContainer">
-        <div class="resumenContainer--infoContainer__datosPrincipales">
-            <mat-card class="resumenContainer--infoContainer__datosPrincipales--datosPersonales">
+        <div class="resumenContainer--infoContainer__datosContainer">
+            <mat-card class="resumenContainer--infoContainer__datosContainer--datos">
                 <h4>Datos Personales</h4>
     
                 <p>Nombre y Apellido: <strong>{{datosPersonales?.nombre}}, {{datosPersonales?.apellido}}</strong></p>
@@ -18,8 +18,8 @@
                 <p>Ciudad: <strong>{{datosPersonales?.Ciudad.nombre}}</strong></p>
                 <p>Pronvincia: <strong>{{datosPersonales?.provincia.nombre}}</strong></p>
             </mat-card>
-    
-            <mat-card class="resumenContainer--infoContainer__datosPrincipales--datosVehiculo">
+            
+            <mat-card class="resumenContainer--infoContainer__datosContainer--datos">
                 <h4>Datos del Vehiculo</h4>
     
                 <p>Marca: <strong>{{datosVehiculo?.marca.desc}}</strong></p>
@@ -27,17 +27,18 @@
                 <p>Version: <strong>{{datosVehiculo?.version.desc}}</strong></p>
                 <p>Año: <strong>{{datosVehiculo?.anio}}</strong></p>
             </mat-card>
-        </div>
+        
 
-        <div class="resumenContainer--infoContainer__datosCobertura">
-            <h4>Datos de la Cobertura</h4>
-            
-            <p>Número de Cobertura: <strong>{{datosCobertura?.numero}}</strong></p>
-            <p>Nombre de Cobertura: <strong>{{datosCobertura?.titulo}}</strong></p>
-            <p>Descripcion: <strong>{{datosCobertura?.descripcion}}</strong></p>
-            <p>Cobertura contra granizo: <strong *ngIf="datosCobertura?.granizo">SI</strong><strong *ngIf="!datosCobertura?.granizo">NO</strong></p>
-            <p>Franquicia: <strong>{{datosCobertura?.franquicia}}</strong></p>
-            <p>Costo: <strong>$ {{datosCobertura?.costo}}</strong></p>
+            <mat-card class="resumenContainer--infoContainer__datosContainer--datos">
+                <h4>Datos de la Cobertura</h4>
+                
+                <p>Número de Cobertura: <strong>{{datosCobertura?.numero}}</strong></p>
+                <p>Nombre de Cobertura: <strong>{{datosCobertura?.titulo}}</strong></p>
+                <p>Descripcion: <strong>{{datosCobertura?.descripcion}}</strong></p>
+                <p>Cobertura contra granizo: <strong *ngIf="datosCobertura?.granizo">SI</strong><strong *ngIf="!datosCobertura?.granizo">NO</strong></p>
+                <p>Franquicia: <strong>{{datosCobertura?.franquicia}}</strong></p>
+                <p>Costo: <strong>$ {{datosCobertura?.costo}}</strong></p>
+            </mat-card>
         </div>
     </div>
 </div>
