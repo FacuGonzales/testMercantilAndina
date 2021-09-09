@@ -1,0 +1,18 @@
+.headerContainer {
+  background: rgb(37, 63, 125);
+  background: linear-gradient(
+    123deg,
+    rgba(37, 63, 125, 1) 38%,
+    rgba(231, 234, 241, 1) 50%,
+    rgba(255, 255, 255, 1) 55%
+  );
+
+  &__imgContainer {
+    width: 50%;
+
+    &--img {
+      margin: 15px;
+      width: 50%;
+    }
+  }
+}
