@@ -1,0 +1,18 @@
+@import "../../../../assets/mixins/mixins";
+@import "../../../../assets/variables/colors";
+
+.footerContainer {
+  color: $colorGris;
+  @include display-grid-content(20% 20% 20% 20% 20%, 100px);
+  text-align: center;
+
+  &__contenido {
+    border-left: 1px solid $colorGris;
+    @include display-flex-content(flex, center, center, "");
+    margin: 10px 0px;
+
+    &:first-child {
+      border-left: none;
+    }
+  }
+}
