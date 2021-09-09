@@ -1,1 +1,60 @@
-<p>coberturas works!</p>
+
+<div class="tableContainer" *ngIf="listadoCoberturas.length">
+    <table #table mat-table [dataSource]="dataSource" class="tableContainer__table mat-elevation-z8">
+
+        <ng-container matColumnDef="titulo">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Titulo</th>
+            <td mat-cell *matCellDef="let element" class="text-center">{{element.titulo}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="puntaje" class="tableContainer__table--puntajeContainer">
+            <th mat-header-cell *matHeaderCellDef class="tableContainer__table--puntajeContainer__th text-center">Puntaje</th>
+            <td mat-cell *matCellDef="let element" class="tableContainer__table--puntajeContainer__td text-center">
+                <div class="tableContainer__table--puntajeContainer__td--divContainer">
+                    <span>{{element.puntaje}} </span>
+                    <mat-icon class="color-star">star_rate</mat-icon>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion" class="tableContainer__table--descripcionContainer">
+            <th mat-header-cell *matHeaderCellDef class="tableContainer__table--descripcionContaine__th text-center">Descripcion</th>
+            <td mat-cell *matCellDef="let element" class="tableContainer__table--descripcionContainer__td text-center">{{element.descripcion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="costo">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Costo</th>
+            <td mat-cell *matCellDef="let element" class="text-center">$ {{element.costo}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="granizo">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Granizo</th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+                <mat-icon class="color-green" *ngIf="element.granizo">check_circle_outline</mat-icon>
+                <mat-icon class="color-red" *ngIf="!element.granizo">highlight_off</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; let i = index; columns:displayedColumns;" (click)="selectedRow(row)" [ngClass]="{'tableContainer__table--selected' : row === selectedElement}" style="cursor: pointer;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div class="formularioContainer__botonContainer">
+    <div class="formularioContainer__botonContainer--siguienteContainer">
+        <button mat-fab color="warn" matTooltip="Regresar pestaña anterior" matStepperPrevious>
+            <mat-icon>west</mat-icon>
+        </button>
+    </div>
+
+    <button class="formularioContainer__botonContainer--buttonEnviar" mat-raised-button color="{{colorEnviar}}" (click)="guardar()" [disabled]="disabledEnviar">Enviar datos</button>
+
+    <div class="formularioContainer__botonContainer--siguienteContainer" *ngIf="registroOk">
+        <button mat-fab color="warn" matTooltip="Continuar Registro" matStepperNext>
+            <mat-icon>arrow_right_alt</mat-icon>
+        </button>
+    </div>
+</div>
