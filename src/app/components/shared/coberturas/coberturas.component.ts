@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { ICoberturaModel } from '../../models/cobertura-model';
 import { CoberturaDataService } from '../../services/cobertura-data.service';
 import { alphaOrder } from '../utils/util';
@@ -11,7 +12,7 @@ import { alphaOrder } from '../utils/util';
   templateUrl: './coberturas.component.html',
   styleUrls: ['./coberturas.component.scss']
 })
-export class CoberturasComponent implements OnInit {
+export class CoberturasComponent implements OnInit, OnDestroy {
 
   listadoCoberturas: ICoberturaModel[] = [];
 
@@ -28,6 +29,8 @@ export class CoberturasComponent implements OnInit {
 
   @Output() enviarCoberturaSelected = new EventEmitter<any>();
 
+  subscribes: Subscription[] = [];
+
   constructor(private coberturaData: CoberturaDataService,
               private alert: ToastrService) { }
 
@@ -35,8 +38,12 @@ export class CoberturasComponent implements OnInit {
     this.obtenerCoberturas();
   }
 
+  ngOnDestroy(): void{
+    this.subscribes.forEach(s => s.unsubscribe());
+  }
+
   obtenerCoberturas(){
-    this.coberturaData.getCoberturas().subscribe(
+    this.subscribes[0] = this.coberturaData.getCoberturas().subscribe(
       c => {
         if(!c) return this.alert.error('Error al obtener las coberturas disponibles');
 

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { IDatosPersonalesModel } from '../../models/datos-personales-model';
 import { IEntidadModel } from '../../models/entidad-model';
 import { IProvinciasModel } from '../../models/pronvincias-model';
@@ -13,7 +14,7 @@ import { alphaOrder } from '../utils/util';
   templateUrl: './datos-personales.component.html',
   styleUrls: ['./datos-personales.component.scss']
 })
-export class DatosPersonalesComponent implements OnInit {
+export class DatosPersonalesComponent implements OnInit, OnDestroy {
 
   loading: boolean = false;
   registroOk: boolean = false;
@@ -42,6 +43,8 @@ export class DatosPersonalesComponent implements OnInit {
 
   @Output() datosPersonalesLoad = new EventEmitter<any>();
   
+  subscribes: Subscription[] = [];
+
   constructor(private geoRef: GeoRefDataService, 
               private usuarioData : UsuarioDataService,
               private fb: FormBuilder,
@@ -53,7 +56,10 @@ export class DatosPersonalesComponent implements OnInit {
     this.formSubscribe();
   }
 
-  
+  ngOnDestroy(): void{
+    this.subscribes.forEach(s => s.unsubscribe());
+  }
+
   formInit(){
     this.datosPersonalesForm = this.fb.group({
       apellido: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
@@ -74,13 +80,13 @@ export class DatosPersonalesComponent implements OnInit {
   }
 
   formSubscribe(){
-    this.datosPersonalesForm.valueChanges.subscribe( p => {
+    this.subscribes[0] = this.datosPersonalesForm.valueChanges.subscribe( p => {
       this.disabledEnviar = false; 
       this.colorEnviar = 'primary';
       this.registroOk = false;
     });
 
-    this.datosPersonalesForm.get('provincia').valueChanges.subscribe( p => this.obtenerCiudades(p));
+    this.subscribes[1] = this.datosPersonalesForm.get('provincia').valueChanges.subscribe( p => this.obtenerCiudades(p));
   }
 
   get formControl(){
@@ -115,7 +121,7 @@ export class DatosPersonalesComponent implements OnInit {
   }
 
   obtenerProvincias(){
-    this.geoRef.obtenerProvincias().subscribe(
+    this.subscribes[2] = this.geoRef.obtenerProvincias().subscribe(
       p => {
         if(p){
           this.listadoProvincias = p.provincias;
@@ -129,7 +135,7 @@ export class DatosPersonalesComponent implements OnInit {
   }
 
   obtenerCiudades(value:number){
-    this.geoRef.obtenerCiudades(value).subscribe(
+    this.subscribes[3] = this.geoRef.obtenerCiudades(value).subscribe(
       r => {
         if(r){
           this.datosPersonalesForm.get('ciudad').enable();
@@ -152,7 +158,7 @@ export class DatosPersonalesComponent implements OnInit {
         if(fechaSelected.getFullYear() > anioMaximo) return this.alert.error('Debes ser mayor de 18 años para continuar.')
       }
       
-      this.usuarioData.getUsuarioValid(this.datosPersonalesForm.get('usuario').value).subscribe(
+      this.subscribes[4] = this.usuarioData.getUsuarioValid(this.datosPersonalesForm.get('usuario').value).subscribe(
         r => {
           if(r){
             this.loading = false;
