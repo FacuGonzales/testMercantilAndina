@@ -16,19 +16,16 @@ import { CoberturasComponent } from './shared/coberturas/coberturas.component';
         MaterialCommonModule
     ],
     declarations: [
-        
         DatosPersonalesComponent,
         DatosVehiculoComponent,
-        
         LoadingComponent,
-        
         CoberturasComponent,
-        
     ],
     exports: [
         DatosPersonalesComponent,
         DatosVehiculoComponent,
-        LoadingComponent
+        LoadingComponent,
+        CoberturasComponent
     ],
     providers: [],
 })
