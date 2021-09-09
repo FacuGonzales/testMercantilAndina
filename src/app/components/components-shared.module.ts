@@ -5,6 +5,7 @@ import { DatosPersonalesComponent } from './shared/datos-personales/datos-person
 import { MaterialCommonModule } from '../material-common.module';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { DatosVehiculoComponent } from './shared/datos-vehiculo/datos-vehiculo.component';
+import { CoberturasComponent } from './shared/coberturas/coberturas.component';
 
 
 @NgModule({
@@ -20,6 +21,8 @@ import { DatosVehiculoComponent } from './shared/datos-vehiculo/datos-vehiculo.c
         DatosVehiculoComponent,
         
         LoadingComponent,
+        
+        CoberturasComponent,
         
     ],
     exports: [
