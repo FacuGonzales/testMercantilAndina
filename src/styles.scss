@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/mixins/mixins";
+@import "./assets/variables/colors";
 
 html,
 body {
@@ -9,8 +10,17 @@ body {
   margin: 0;
 }
 
-@import "./assets/mixins/mixins";
-@import "./assets/variables/colors";
+.color-green {
+  color: $colorGreenSuccess;
+}
+
+.color-red {
+  color: $colorRojo;
+}
+
+.color-star {
+  color: $colorEstrella;
+}
 
 .formularioContainer {
   font-family: Arial, Helvetica, sans-serif;
@@ -80,6 +90,42 @@ select.error_input {
   font-size: 12px;
   margin-bottom: 10px;
   z-index: 10;
+}
+
+.tableContainer {
+  margin: 20px auto;
+  &__table {
+    font-size: 1.3rem;
+
+    &--descripcionContainer {
+      &__td {
+        width: 50% !important;
+      }
+    }
+
+    &--puntajeContainer {
+      &__td {
+        &--divContainer {
+          @include display-flex-content(flex, center, center, "");
+        }
+      }
+    }
+
+    & th {
+      background-color: $colorAzulOscuro;
+      color: $colorBlanco;
+      font-size: 1.3rem;
+    }
+
+    & td {
+      font-size: 1rem;
+      padding: 25px !important;
+    }
+
+    &--selected {
+      background-color: $colorCelesteDegradado;
+    }
+  }
 }
 
 @media only screen and (max-width: 1200px) {
