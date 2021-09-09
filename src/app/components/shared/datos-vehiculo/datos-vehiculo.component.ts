@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IMarcaModel } from '../../models/marca-model';
@@ -13,6 +13,11 @@ import { alphaOrder } from '../utils/util'
 export class DatosVehiculoComponent implements OnInit {
 
   loading: boolean = false;
+  registroOk: boolean = false;
+
+  // variable que me permite modificar el color del boton de Enviar
+  disabledEnviar: boolean = false;
+  colorEnviar: string = 'primary';
 
   // Contiene el formulario de los datos personales
   datosVehiculoForm: FormGroup;
@@ -23,6 +28,8 @@ export class DatosVehiculoComponent implements OnInit {
   listadoMarca:IMarcaModel[] = [];
   listadoModelo: string[] = [];
   listadoVersiones:IMarcaModel[] = [];
+
+  @Output() datosVehiculoLoad = new EventEmitter<any>();
 
   constructor(private vehiculosData: VehiculoDataService,
               private fb: FormBuilder,
@@ -108,18 +115,18 @@ export class DatosVehiculoComponent implements OnInit {
   }
 
   guardar(){
-    this.loading = true;
-
     if(this.datosVehiculoForm.valid){
       localStorage.setItem('datos-vehiculo', JSON.stringify(this.datosVehiculoForm.value));
-      this.loading = false;
-      this.alert.success('Se guardo correctamente los datos del vehiculo.');
-
+      this.datosVehiculoLoad.emit(this.datosVehiculoForm.value);
+      
+      this.alert.success('Se creo correctamente ');
+      this.disabledEnviar = true;
+      this.colorEnviar = '';
+      this.registroOk = true;
     }else{
       this.datosVehiculoForm.updateValueAndValidity();
       this.datosVehiculoForm.markAllAsTouched();
       this.alert.error('El formulario posee campos invalidos.');
-      this.loading = false;
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IEntidadModel } from '../../models/entidad-model';
@@ -15,6 +15,11 @@ import { alphaOrder } from '../utils/util';
 export class DatosPersonalesComponent implements OnInit {
 
   loading: boolean = false;
+  registroOk: boolean = false;
+
+  // variable que me permite modificar el color del boton de Enviar
+  disabledEnviar: boolean = false;
+  colorEnviar: string = 'primary';
   
   // Contiene el formulario de los datos personales
   datosPersonalesForm: FormGroup;
@@ -34,6 +39,8 @@ export class DatosPersonalesComponent implements OnInit {
   // Contiene el listado de ciudades por provincias
   listadoCiudades: IEntidadModel[] = [];
 
+  @Output() datosPersonalesLoad = new EventEmitter<any>();
+  
   constructor(private geoRef: GeoRefDataService, 
               private usuarioData : UsuarioDataService,
               private fb: FormBuilder,
@@ -43,6 +50,11 @@ export class DatosPersonalesComponent implements OnInit {
     this.formInit();
     this.obtenerProvincias();
     this.formSubscribe();
+
+    // if(this.datosPersonalesForm.value) {
+    //   this.disabledEditar = false;
+    //   this.colorEditar = 'primary'
+    // }
   }
 
   
@@ -66,6 +78,12 @@ export class DatosPersonalesComponent implements OnInit {
   }
 
   formSubscribe(){
+    this.datosPersonalesForm.valueChanges.subscribe( p => {
+      this.disabledEnviar = false; 
+      this.colorEnviar = 'primary';
+      this.registroOk = false;
+    });
+
     this.datosPersonalesForm.get('provincia').valueChanges.subscribe( p => this.obtenerCiudades(p));
   }
 
@@ -130,7 +148,7 @@ export class DatosPersonalesComponent implements OnInit {
   guardar(){
     if(this.datosPersonalesForm.valid){
       if(this.datosPersonalesForm.get('fechaNacimiento').value){
-        let fechaSelected: Date = this.datosPersonalesForm.get('fechaNacimiento').value;
+        let fechaSelected: Date = new Date(this.datosPersonalesForm.get('fechaNacimiento').value);
         let anioMinimo = this.fechaActual.getFullYear() - 99;
         let anioMaximo = this.fechaActual.getFullYear() - 18; 
 
@@ -139,8 +157,6 @@ export class DatosPersonalesComponent implements OnInit {
         if(fechaSelected.getFullYear() > anioMaximo) return this.alert.error('Debes ser mayor de 18 años para continuar.')
       }
       
-      this.loading = true;
-
       this.usuarioData.getUsuarioValid(this.datosPersonalesForm.get('usuario').value).subscribe(
         r => {
           if(r){
@@ -152,9 +168,14 @@ export class DatosPersonalesComponent implements OnInit {
             return;
           }
 
+          this.datosPersonalesLoad.emit(this.datosPersonalesForm.value);
+          
           localStorage.setItem('datos-personales', JSON.stringify(this.datosPersonalesForm.value));
-          this.loading = false;
-          this.alert.success('Se creo correctamente ')
+          
+          this.alert.success('Se creo correctamente ');
+          this.disabledEnviar = true;
+          this.colorEnviar = '';
+          this.registroOk = true;
         }
       )
 
@@ -162,9 +183,7 @@ export class DatosPersonalesComponent implements OnInit {
       this.datosPersonalesForm.updateValueAndValidity();
       this.datosPersonalesForm.markAllAsTouched();
       this.alert.error('El formulario posee campos invalidos.')
-    
     }
   }
-
-
+  
 }
