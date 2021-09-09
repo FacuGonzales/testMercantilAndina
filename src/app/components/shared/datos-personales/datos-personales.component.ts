@@ -5,6 +5,7 @@ import { IEntidadModel } from '../../models/entidad-model';
 import { IProvinciasModel } from '../../models/pronvincias-model';
 import { GeoRefDataService } from '../../services/geo-ref-data.service';
 import { UsuarioDataService } from '../../services/usuario-data.service';
+import { alphaOrder } from '../utils/util';
 
 @Component({
   selector: 'datos-personales-component',
@@ -104,11 +105,8 @@ export class DatosPersonalesComponent implements OnInit {
       p => {
         if(p){
           this.listadoProvincias = p.provincias;
-          this.listadoProvincias.sort( (a,b) => {
-            if(a.nombre < b.nombre) return -1;
-            if(a.nombre > b.nombre) return 1;
-            return 0;
-          });
+
+          this.listadoProvincias.sort( (a,b)=> alphaOrder(a.nombre, b.nombre));
         }else{
           this.alert.error('Error al obtener las pronvincias.')
         }
@@ -122,11 +120,7 @@ export class DatosPersonalesComponent implements OnInit {
         if(r){
           this.datosPersonalesForm.get('ciudad').enable();
           this.listadoCiudades = r.municipios;
-          this.listadoCiudades.sort( (a,b) => {
-            if(a.nombre < b.nombre) return -1;
-            if(a.nombre > b.nombre) return 1;
-            return 0;
-          });
+          this.listadoCiudades.sort( (a,b)=> alphaOrder(a.nombre, b.nombre));
         }
       }
     );
