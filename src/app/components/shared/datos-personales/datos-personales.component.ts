@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { IDatosPersonalesModel } from '../../models/datos-personales-model';
 import { IEntidadModel } from '../../models/entidad-model';
 import { IProvinciasModel } from '../../models/pronvincias-model';
 import { GeoRefDataService } from '../../services/geo-ref-data.service';
@@ -50,11 +51,6 @@ export class DatosPersonalesComponent implements OnInit {
     this.formInit();
     this.obtenerProvincias();
     this.formSubscribe();
-
-    // if(this.datosPersonalesForm.value) {
-    //   this.disabledEditar = false;
-    //   this.colorEditar = 'primary'
-    // }
   }
 
   
@@ -144,7 +140,6 @@ export class DatosPersonalesComponent implements OnInit {
     );
   }
 
-
   guardar(){
     if(this.datosPersonalesForm.valid){
       if(this.datosPersonalesForm.get('fechaNacimiento').value){
@@ -168,10 +163,22 @@ export class DatosPersonalesComponent implements OnInit {
             return;
           }
 
-          this.datosPersonalesLoad.emit(this.datosPersonalesForm.value);
-          
-          localStorage.setItem('datos-personales', JSON.stringify(this.datosPersonalesForm.value));
-          
+          let datosPersonales: IDatosPersonalesModel = {
+            apellido: this.datosPersonalesForm.get('apellido').value,
+            nombre: this.datosPersonalesForm.get('nombre').value,
+            dni: this.datosPersonalesForm.get('dni').value,
+            email: this.datosPersonalesForm.get('email').value,
+            celular: this.datosPersonalesForm.get('celular').value,
+            telefono: this.datosPersonalesForm.get('telefono').value,
+            domicilio: this.datosPersonalesForm.get('domicilio').value,
+            provincia: this.listadoProvincias.find( p => p.id === this.datosPersonalesForm.get('provincia').value),
+            Ciudad: this.listadoCiudades.find( p => p.id === this.datosPersonalesForm.get('ciudad').value),
+            fechaNacimiento: this.datosPersonalesForm.get('fechaNacimiento').value,
+            usuario: this.datosPersonalesForm.get('usuario').value
+          }
+
+          this.datosPersonalesLoad.emit(datosPersonales);
+
           this.alert.success('Se creo correctamente ');
           this.disabledEnviar = true;
           this.colorEnviar = '';
