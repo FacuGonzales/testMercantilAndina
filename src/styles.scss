@@ -4,7 +4,9 @@
 html,
 body {
   height: 100%;
+  min-height: 100%;
 }
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
@@ -159,15 +161,19 @@ select.error_input {
 
 @media only screen and (max-width: 1200px) {
   .formularioContainer {
-    width: 60%;
+    width: 100%; //60%;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .formularioContainer {
     width: 70%;
+    &__containerGrupoInputs {
+      display: block;
+    }
   }
 }
+
 @media only screen and (max-width: 600px) {
   .formularioContainer {
     width: 80%;
@@ -180,6 +186,53 @@ select.error_input {
 
         & input {
           font-size: 14px;
+        }
+      }
+    }
+
+    &__botonContainer {
+      &--buttonEnviar {
+        font-size: 1rem !important;
+        padding: 1px 30px !important;
+      }
+
+      &--siguienteContainer {
+        & .mat-fab {
+          height: 45px !important;
+          width: 45px !important;
+          & .material-icons {
+            font-size: 16px !important;
+          }
+        }
+      }
+    }
+  }
+
+  .resumenContainer {
+    &--h2 {
+      font-size: 1.3rem;
+    }
+
+    &--infoContainer {
+      margin: 20px 0px;
+
+      &__datosContainer {
+        margin: 20px 0px;
+        width: 100%;
+
+        &--datos {
+          margin: 20px auto;
+          max-width: 1000px;
+          padding: 25px 50px;
+          width: 100%;
+
+          & h4 {
+            padding: 6px;
+          }
+
+          & p {
+            font-size: 0.8rem;
+          }
         }
       }
     }
