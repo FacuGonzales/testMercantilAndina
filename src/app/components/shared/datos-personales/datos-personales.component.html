@@ -19,6 +19,7 @@
             <p class="error" *ngIf="formControl.apellido.hasError('required') && formControl.apellido.touched">El campo Apellido es requerido</p>
             <p class="error" *ngIf="formControl.apellido.hasError('minlength')">Debe tener minimo 2 caracteres</p>
             <p class="error" *ngIf="formControl.apellido.hasError('maxlength')">Debe tener máximo 15 caracteres</p>
+            <p class="error" *ngIf="formControl.apellido.hasError('pattern') && formControl.apellido.touched">No puede ingresar números</p>
         </div>  
         
         <div class="formularioContainer__containerGrupoInputs--containerInput">
@@ -35,6 +36,7 @@
             <p class="error" *ngIf="formControl.nombre.hasError('required') && formControl.nombre.touched">El campo Nombre es requerido</p>
             <p class="error" *ngIf="formControl.nombre.hasError('minlength')">Debe tener minimo 2 caracteres</p>
             <p class="error" *ngIf="formControl.nombre.hasError('maxlength')">Debe tener máximo 15 caracteres</p>
+            <p class="error" *ngIf="formControl.nombre.hasError('pattern') && formControl.nombre.touched">No puede ingresar números</p>
         </div>
     </div>
 
@@ -48,12 +50,12 @@
                    placeholder="Dni" 
                    autocomplete="off" 
                    id="documentoId"
-                   (keypress)="soloNumeros($event, true)"
                    [ngClass]="{'error_input':(formControl.dni.hasError('required') && formControl.dni.touched) || (formControl.dni.invalid && formControl.dni.touched)}">
         
             <p class="error" *ngIf="formControl.dni.hasError('required') && formControl.dni.touched">El campo Dni es requerido</p>
             <p class="error" *ngIf="formControl.dni.hasError('minlength')">Debe tener minimo 7 caracteres</p>
             <p class="error" *ngIf="formControl.dni.hasError('maxlength')">Debe tener máximo 8 caracteres</p>
+            <p class="error" *ngIf="formControl.dni.hasError('pattern') && formControl.dni.touched">No puede ingresar letras</p>
         </div>
 
         <div class="formularioContainer__containerGrupoInputs--containerInput">
@@ -82,11 +84,11 @@
                    placeholder="Celular" 
                    autocomplete="off"
                    id="celularId"
-                   (keypress)="soloNumeros($event, true)"
                    [ngClass]="{'error_input': formControl.celular.invalid && formControl.celular.touched}">
 
             <p class="error" *ngIf="formControl.celular.hasError('minlength')">Debe tener 10 caracteres</p>
             <p class="error" *ngIf="formControl.celular.hasError('maxlength')">Debe tener 10 caracteres</p>
+            <p class="error" *ngIf="formControl.celular.hasError('pattern') && formControl.celular.touched">No puede ingresar letras</p>
         </div>
     
         <div class="formularioContainer__containerGrupoInputs--containerInput">
@@ -98,11 +100,11 @@
                    placeholder="Telefono" 
                    autocomplete="off"
                    id="telefonoId"
-                   (keypress)="soloNumeros($event, true)"
                    [ngClass]="{'error_input': formControl.telefono.invalid && formControl.telefono.touched}">
             
             <p class="error" *ngIf="formControl.telefono.hasError('minlength')">Debe tener 10 caracteres</p>
             <p class="error" *ngIf="formControl.telefono.hasError('maxlength')">Debe tener 10 caracteres</p>
+            <p class="error" *ngIf="formControl.telefono.hasError('pattern') && formControl.telefono.touched">No puede ingresar letras</p>
         </div>
     </div>
 
