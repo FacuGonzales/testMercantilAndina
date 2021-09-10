@@ -16,3 +16,41 @@
     }
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .footerContainer {
+    &__contenido {
+      width: 100%;
+      padding: 15px;
+      & p {
+        font-size: 0.8rem;
+      }
+
+      & img {
+        width: 75%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footerContainer {
+    &__contenido {
+      padding: 15px;
+      & p {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .footerContainer {
+    &__contenido {
+      padding: 5px;
+      & p {
+        font-size: 0.5rem;
+      }
+    }
+  }
+}
