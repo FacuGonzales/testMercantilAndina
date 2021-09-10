@@ -62,12 +62,12 @@ export class DatosPersonalesComponent implements OnInit, OnDestroy {
 
   formInit(){
     this.datosPersonalesForm = this.fb.group({
-      apellido: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
-      nombre: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
-      dni: ['', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(8)])],
+      apellido: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2), Validators.maxLength(15)])],
+      nombre: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2), Validators.maxLength(15)])],
+      dni: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.minLength(7), Validators.maxLength(8)])],
       email: ['', [Validators.required, Validators.email]],
-      celular: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(10)])],
-      telefono: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(10)])],
+      celular: ['', Validators.compose([Validators.pattern(/^[0-9]\d*$/), Validators.minLength(10), Validators.maxLength(10)])],
+      telefono: ['', Validators.compose([Validators.pattern(/^[0-9]\d*$/), Validators.minLength(10), Validators.maxLength(10)])],
       domicilio: ['', [Validators.required]],
       provincia: ['', [Validators.required]],
       ciudad: ['', [Validators.required]],
@@ -91,21 +91,6 @@ export class DatosPersonalesComponent implements OnInit, OnDestroy {
 
   get formControl(){
     return this.datosPersonalesForm.controls;
-  }
-
-  soloNumeros(_evnt, numeros){
-    _evnt = _evnt ? _evnt : window.event;
-
-    let charCode = _evnt.which ? _evnt.which : _evnt.keyCode;
-    
-    if(numeros){
-      if(charCode >= 48 && charCode <=57) return true;
-      return false;
-
-    }else{
-      if(charCode == 46 || (charCode >= 48 && charCode <=57)) return true;
-      return false;
-    }
   }
 
   validarPassword(value){
