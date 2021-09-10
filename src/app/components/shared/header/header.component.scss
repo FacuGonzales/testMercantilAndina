@@ -16,3 +16,45 @@
     }
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .headerContainer {
+    &__imgContainer {
+      width: 50%;
+
+      &--img {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .headerContainer {
+    background: rgb(37, 63, 125);
+    background: linear-gradient(123deg, #253f7d 55%, #e7eaf1 72%, white 79%);
+
+    &__imgContainer {
+      width: 60%;
+
+      &--img {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .headerContainer {
+    background: rgb(37, 63, 125);
+    background: linear-gradient(123deg, #253f7d 55%, #e7eaf1 72%, white 79%);
+
+    &__imgContainer {
+      width: 60%;
+
+      &--img {
+        width: 60%;
+      }
+    }
+  }
+}
