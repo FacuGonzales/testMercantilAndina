@@ -3,7 +3,7 @@
     <header-component></header-component>
 </div>
 
-<div class="col-sm-12 col-md-10 col-lg-10 containerForm">
+<div class="col-sm-10 col-md-10 col-lg-10 containerForm">
     <mat-card>
         <mat-horizontal-stepper linear #stepper>
 
@@ -17,7 +17,7 @@
             </mat-step>
 
             <!-- DATOS DEL VEHICULO -->
-            <mat-step [stepControl]="datosVehiculoForm">
+            <mat-step [stepControl]="datosVehiculoForm"> 
                 
                 <ng-template matStepLabel>Datos del Vehiculo</ng-template>
                 
@@ -44,6 +44,6 @@
     </mat-card>
 </div>
 
-<div class="col-sm-12 col-md- 12 col-lg-12">
+<div class="col-sm-12 col-md- 12 col-lg-12 footerComponent">
     <footer-container></footer-container>
 </div>
