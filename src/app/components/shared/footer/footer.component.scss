@@ -22,8 +22,12 @@
     &__contenido {
       width: 100%;
       padding: 15px;
-      & p {
+      &--p {
         font-size: 0.8rem;
+      }
+
+      &--pUrl {
+        font-size: 0.7rem;
       }
 
       & img {
@@ -37,8 +41,12 @@
   .footerContainer {
     &__contenido {
       padding: 15px;
-      & p {
+      &--p {
         font-size: 0.7rem;
+      }
+
+      &--pUrl {
+        font-size: 0.6rem;
       }
     }
   }
@@ -48,8 +56,13 @@
   .footerContainer {
     &__contenido {
       padding: 5px;
-      & p {
+
+      &--p {
         font-size: 0.5rem;
+      }
+
+      &--pUrl {
+        font-size: 0.4rem;
       }
     }
   }
