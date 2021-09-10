@@ -7,13 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import { CdkTableModule } from '@angular/cdk/table';
-
-
-
-
 
 @NgModule({
     imports: [
@@ -24,9 +17,6 @@ import { CdkTableModule } from '@angular/cdk/table';
         MatButtonModule,
         MatProgressBarModule,
         MatIconModule,
-        MatTableModule,
-        MatPaginatorModule,
-        CdkTableModule,
 
     ],
     declarations: [
@@ -38,9 +28,6 @@ import { CdkTableModule } from '@angular/cdk/table';
         MatProgressBarModule,
         MatTooltipModule,
         MatIconModule,
-        MatTableModule,
-        MatPaginatorModule,
-        CdkTableModule
     ],
     providers: [  
         MatDatepickerModule,  

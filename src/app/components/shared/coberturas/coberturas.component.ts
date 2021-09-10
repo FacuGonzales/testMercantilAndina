@@ -1,6 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ICoberturaModel } from '../../models/cobertura-model';
@@ -21,11 +19,7 @@ export class CoberturasComponent implements OnInit, OnDestroy {
   disabledEnviar: boolean = true;
   colorEnviar: string = '';
 
-  displayedColumns: string[] = ['titulo', 'puntaje', 'descripcion', 'franquicia','costo', 'granizo'];
-  dataSource: MatTableDataSource<any>;
   selectedElement: ICoberturaModel;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @Output() enviarCoberturaSelected = new EventEmitter<any>();
 
@@ -49,9 +43,6 @@ export class CoberturasComponent implements OnInit, OnDestroy {
 
         this.listadoCoberturas = c;
         this.listadoCoberturas.sort( (a,b)=> alphaOrder(a.puntaje, b.puntaje, true));
-
-        this.dataSource = new MatTableDataSource(this.listadoCoberturas);
-        setTimeout( () => this.dataSource.paginator = this.paginator);
       }
     );
   }

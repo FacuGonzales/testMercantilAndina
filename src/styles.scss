@@ -24,6 +24,12 @@ body {
   color: $colorEstrella;
 }
 
+h2 {
+  border-bottom: 1px solid $colorGris;
+  margin: 30px 0px;
+  padding: 15px 0px;
+}
+
 // FORMULARIOS
 .formularioContainer {
   font-family: Arial, Helvetica, sans-serif;
@@ -98,36 +104,37 @@ select.error_input {
 // COBERTURA
 .tableContainer {
   margin: 20px auto;
+
   &__table {
     font-size: 1.3rem;
+    text-align: center;
 
-    &--descripcionContainer {
-      &__td {
-        width: 50% !important;
+    &--thead {
+      &__tr {
+        background-color: $colorAzulOscuro;
+        color: $colorBlanco;
+        font-size: 1.3rem;
       }
     }
 
-    &--puntajeContainer {
-      &__td {
-        &--divContainer {
-          @include display-flex-content(flex, center, center, "");
+    &--tbody {
+      &__tr {
+        &--selected {
+          background-color: $colorCelesteDegradado;
+        }
+
+        &--td {
+          font-size: 1rem;
+          padding: 25px !important;
+          &__puntajeContainer {
+            @include display-flex-content(flex, center, center, "");
+          }
+
+          // &__descripcionContainer {
+          //   width: 50% !important;
+          // }
         }
       }
-    }
-
-    & th {
-      background-color: $colorAzulOscuro;
-      color: $colorBlanco;
-      font-size: 1.3rem;
-    }
-
-    & td {
-      font-size: 1rem;
-      padding: 25px !important;
-    }
-
-    &--selected {
-      background-color: $colorCelesteDegradado;
     }
   }
 }
@@ -163,13 +170,49 @@ select.error_input {
   .formularioContainer {
     width: 100%; //60%;
   }
+
+  .tableContainer {
+    &__table {
+      &--thead {
+        &__tr {
+          background-color: $colorAzulOscuro;
+          color: $colorBlanco;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  h2 {
+    font-size: 1rem;
+  }
+
   .formularioContainer {
     width: 70%;
     &__containerGrupoInputs {
       display: block;
+    }
+  }
+
+  .tableContainer {
+    &__table {
+      &--thead {
+        &__tr {
+          background-color: $colorAzulOscuro;
+          color: $colorBlanco;
+          font-size: 1rem;
+        }
+      }
+
+      &--tbody {
+        &__tr {
+          &--td {
+            font-size: 0.8rem;
+          }
+        }
+      }
     }
   }
 }
@@ -192,8 +235,8 @@ select.error_input {
 
     &__botonContainer {
       &--buttonEnviar {
-        font-size: 1rem !important;
-        padding: 1px 30px !important;
+        font-size: 0.6rem !important;
+        padding: 1px 5px !important;
       }
 
       &--siguienteContainer {
